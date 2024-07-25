@@ -1,5 +1,11 @@
 const express = require("express");
+const app = express();
 const router = express.Router();
+require("dotenv").config();
+
+const PORT = process.env.PORT || 3000;
+
+app.use(express.json());
 
 /* GET users listing. */
 router.get("/", function (req, res, next) {
@@ -21,6 +27,10 @@ router.post("/", function (req, res, next) {
     return res.status(201).json("user created");
   }
   return res.status(400).json("user not created");
+});
+
+app.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}`);
 });
 
 module.exports = router;
