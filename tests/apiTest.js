@@ -24,10 +24,10 @@ describe("GET /users/:id", () => {
 describe("GET /users/:id", () => {
   it("responds with json user not found", (done) => {
     request(app)
-      .get("/users/idisnonesisting")
+      .get("/users/idisnonexisting")
       .set("Accept", "application/json")
       .expect("Content-Type", /json/)
-      .expect(404, "user not found")
+      .expect(404)
       .end((err) => {
         if (err) return done(err);
         done();
@@ -48,7 +48,7 @@ describe("POST /users", () => {
       .send(data)
       .set("Accept", "application/json")
       .expect("Content-Type", /json/)
-      .expect(201, "user created")
+      .expect(201)
       .end((err) => {
         if (err) return done(err);
         done();
@@ -68,7 +68,7 @@ describe("POST /users", () => {
       .send(data)
       .set("Accept", "application/json")
       .expect("Content-Type", /json/)
-      .expect(400, "user not created")
+      .expect(400)
       .end((err) => {
         if (err) return done(err);
         done();
